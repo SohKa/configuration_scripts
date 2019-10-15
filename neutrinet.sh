@@ -131,7 +131,7 @@ upgrade_system() {
     echo "Upgrading Debian packages..."
 
     set -x
-    echo "deb http://repo.yunohost.org/debian jessie stable" > /etc/apt/sources.list.d/yunohost.list
+    echo "deb http://forge.yunohost.org/debian/ stretch stable" > /etc/apt/sources.list.d/yunohost.list
 
     apt-get update -qq
 
@@ -277,7 +277,7 @@ install_hotspot() {
     echo "Installing the Hotspot application..."
 
     set -x
-    yunohost app install hotspot --verbose \
+    yunohost --debug app install hotspot \
       --args "domain=$domain&path=/wifiadmin&wifi_ssid=$wifi_ssid&wifi_passphrase=$dummy_pwd&firmware_nonfree=yes"
 }
 
@@ -308,14 +308,14 @@ install_doctorcube() {
     set -x
     echo "Installing doctorcube (this shouldn't do anything)..."
 
-    yunohost app install doctorcube --verbose
+    yunohost --debug app install doctorcube
 }
 
 install_neutrinet_ynh() {
     set -x
     echo "Installing neutrinet_ynh..."
 
-    yunohost app install https://github.com/Neutrinet/neutrinet_ynh --verbose --args "domain=$domain&path=/neutrinet"
+    yunohost --debug app install https://github.com/Neutrinet/neutrinet_ynh --args "domain=$domain&path=/neutrinet"
 }
 
 # ----------------------------------
